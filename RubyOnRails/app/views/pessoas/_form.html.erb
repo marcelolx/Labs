@@ -1,0 +1,87 @@
+<%= form_with(model: pessoa, local: true) do |form| %>
+  <% if pessoa.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pessoa.errors.count, "error") %> prohibited this pessoa from being saved:</h2>
+
+      <ul>
+      <% pessoa.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :pessoa_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :string %>
+    <%= form.text_field :string, id: :pessoa_string %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sobrenome %>
+    <%= form.text_field :sobrenome, id: :pessoa_sobrenome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :string %>
+    <%= form.text_field :string, id: :pessoa_string %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data_nascimento %>
+    <%= form.text_field :data_nascimento, id: :pessoa_data_nascimento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.text_field :date, id: :pessoa_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :pessoa_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :string %>
+    <%= form.text_field :string, id: :pessoa_string %>
+  </div>
+
+  <div class="field">
+    <%= form.label :senha %>
+    <%= form.text_field :senha, id: :pessoa_senha %>
+  </div>
+
+  <div class="field">
+    <%= form.label :string %>
+    <%= form.text_field :string, id: :pessoa_string %>
+  </div>
+
+  <div class="field">
+    <%= form.label :foto_url %>
+    <%= form.text_field :foto_url, id: :pessoa_foto_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :string %>
+    <%= form.text_field :string, id: :pessoa_string %>
+  </div>
+
+  <div class="actions">
+    <%= link_to 'Voltar', pessoas_path,
+    {
+      :style=>'color:#FFFFFF;',
+      :class => "btn btn-info"
+    }
+    %>
+    <%= form.submit 'Cadastrar', {
+        :style=>'color:#FFFFFF;',
+        :class => "btn btn-success"
+      }
+    %>
+  </div>
+<% end %>
