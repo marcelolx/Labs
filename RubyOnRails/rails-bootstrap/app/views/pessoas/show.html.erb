@@ -6,18 +6,8 @@
 </p>
 
 <p>
-  <strong>String:</strong>
-  <%= @pessoa.string %>
-</p>
-
-<p>
   <strong>Sobrenome:</strong>
   <%= @pessoa.sobrenome %>
-</p>
-
-<p>
-  <strong>String:</strong>
-  <%= @pessoa.string %>
 </p>
 
 <p>
@@ -26,8 +16,8 @@
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @pessoa.date %>
+  <strong>Cpf:</strong>
+  <%= @pessoa.cpf %>
 </p>
 
 <p>
@@ -36,28 +26,18 @@
 </p>
 
 <p>
-  <strong>String:</strong>
-  <%= @pessoa.string %>
+  <strong>Telefone:</strong>
+  <%= @pessoa.telefone %>
 </p>
 
 <p>
-  <strong>Senha:</strong>
-  <%= @pessoa.senha %>
+  <strong>Celular:</strong>
+  <%= @pessoa.celular %>
 </p>
 
 <p>
-  <strong>String:</strong>
-  <%= @pessoa.string %>
-</p>
-
-<p>
-  <strong>Foto url:</strong>
-  <%= @pessoa.foto_url %>
-</p>
-
-<p>
-  <strong>String:</strong>
-  <%= @pessoa.string %>
+  <strong>Avatar:</strong>
+  <%= image_tag @pessoa.avatar.url(:original) %>
 </p>
 
 <%= link_to 'Edit', edit_pessoa_path(@pessoa) %> |

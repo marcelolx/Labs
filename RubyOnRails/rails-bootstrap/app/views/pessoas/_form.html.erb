@@ -1,4 +1,4 @@
-<%= form_with(model: pessoa, local: true, :class => "container") do |form| %>
+  <%= form_with(model: pessoa, local: true, :html => { :multipart => true }) do |form| %>
   <% if pessoa.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(pessoa.errors.count, "error") %> prohibited this pessoa from being saved:</h2>
@@ -11,14 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field" class="form-control">
+  <div class="field">
     <%= form.label :nome %>
     <%= form.text_field :nome, id: :pessoa_nome %>
-  </div>
-
-  <div class="field">
-    <%= form.label :string %>
-    <%= form.text_field :string, id: :pessoa_string %>
   </div>
 
   <div class="field">
@@ -27,18 +22,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :string %>
-    <%= form.text_field :string, id: :pessoa_string %>
-  </div>
-
-  <div class="field">
     <%= form.label :data_nascimento %>
-    <%= form.text_field :data_nascimento, id: :pessoa_data_nascimento %>
+    <%= form.date_select :data_nascimento, id: :pessoa_data_nascimento %>
   </div>
 
   <div class="field">
-    <%= form.label :date %>
-    <%= form.text_field :date, id: :pessoa_date %>
+    <%= form.label :cpf %>
+    <%= form.text_field :cpf, id: :pessoa_cpf %>
   </div>
 
   <div class="field">
@@ -47,38 +37,21 @@
   </div>
 
   <div class="field">
-    <%= form.label :string %>
-    <%= form.text_field :string, id: :pessoa_string %>
+    <%= form.label :telefone %>
+    <%= form.text_field :telefone, id: :pessoa_telefone %>
   </div>
 
   <div class="field">
-    <%= form.label :senha %>
-    <%= form.text_field :senha, id: :pessoa_senha %>
+    <%= form.label :celular %>
+    <%= form.text_field :celular, id: :pessoa_celular %>
   </div>
 
   <div class="field">
-    <%= form.label :string %>
-    <%= form.text_field :string, id: :pessoa_string %>
-  </div>
-
-  <div class="field">
-    <%= form.label :foto_url %>
-    <%= form.text_field :foto_url, id: :pessoa_foto_url %>
-  </div>
-
-  <div class="field">
-    <%= form.label :string %>
-    <%= form.text_field :string, id: :pessoa_string %>
+    <%= form.label "Avatar" %>
+    <%= form.file_field :avatar, id: :pessoa_avatar %>
   </div>
 
   <div class="actions">
-    <%= link_to 'Voltar', pessoas_path,
-    {
-      :style=>'color:#FFFFFF;',
-      :class => "btn btn-info"
-    }
-    %>
-
-    <%= form.submit 'Cadastrar', :class => "btn btn-success" %>
+    <%= form.submit %>
   </div>
 <% end %>

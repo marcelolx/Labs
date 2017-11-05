@@ -10,19 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171028025818) do
+ActiveRecord::Schema.define(version: 20171105030358) do
 
   create_table "pessoas", force: :cascade do |t|
     t.string "nome"
-    t.string "string"
     t.string "sobrenome"
-    t.string "data_nascimento"
-    t.string "date"
+    t.date "data_nascimento"
+    t.string "cpf"
     t.string "email"
-    t.string "senha"
-    t.string "foto_url"
+    t.string "telefone"
+    t.string "celular"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
 end

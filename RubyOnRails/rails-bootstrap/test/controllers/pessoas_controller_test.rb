@@ -17,7 +17,7 @@ class PessoasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create pessoa" do
     assert_difference('Pessoa.count') do
-      post pessoas_url, params: { pessoa: { data_nascimento: @pessoa.data_nascimento, date: @pessoa.date, email: @pessoa.email, foto_url: @pessoa.foto_url, nome: @pessoa.nome, senha: @pessoa.senha, sobrenome: @pessoa.sobrenome, string: @pessoa.string, string: @pessoa.string, string: @pessoa.string, string: @pessoa.string, string: @pessoa.string } }
+      post pessoas_url, params: { pessoa: { celular: @pessoa.celular, cpf: @pessoa.cpf, data_nascimento: @pessoa.data_nascimento, email: @pessoa.email, nome: @pessoa.nome, sobrenome: @pessoa.sobrenome, telefone: @pessoa.telefone } }
     end
 
     assert_redirected_to pessoa_url(Pessoa.last)
@@ -34,7 +34,7 @@ class PessoasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update pessoa" do
-    patch pessoa_url(@pessoa), params: { pessoa: { data_nascimento: @pessoa.data_nascimento, date: @pessoa.date, email: @pessoa.email, foto_url: @pessoa.foto_url, nome: @pessoa.nome, senha: @pessoa.senha, sobrenome: @pessoa.sobrenome, string: @pessoa.string, string: @pessoa.string, string: @pessoa.string, string: @pessoa.string, string: @pessoa.string } }
+    patch pessoa_url(@pessoa), params: { pessoa: { celular: @pessoa.celular, cpf: @pessoa.cpf, data_nascimento: @pessoa.data_nascimento, email: @pessoa.email, nome: @pessoa.nome, sobrenome: @pessoa.sobrenome, telefone: @pessoa.telefone } }
     assert_redirected_to pessoa_url(@pessoa)
   end
 
