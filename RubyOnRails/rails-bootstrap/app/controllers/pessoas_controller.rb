@@ -28,7 +28,7 @@ class PessoasController < ApplicationController
 
     respond_to do |format|
       if @pessoa.save
-        format.html { redirect_to @pessoa, notice: 'Pessoa was successfully created.' }
+        format.html { redirect_to @pessoa, notice: 'Pessoa cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @pessoa }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class PessoasController < ApplicationController
   def update
     respond_to do |format|
       if @pessoa.update(pessoa_params)
-        format.html { redirect_to @pessoa, notice: 'Pessoa was successfully updated.' }
+        format.html { redirect_to @pessoa, notice: 'Pessoa atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @pessoa }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class PessoasController < ApplicationController
   def destroy
     @pessoa.destroy
     respond_to do |format|
-      format.html { redirect_to pessoas_url, notice: 'Pessoa was successfully destroyed.' }
+      format.html { redirect_to pessoas_url, notice: 'Pessoa removida com sucesso!' }
       format.json { head :no_content }
     end
   end

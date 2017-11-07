@@ -1,44 +1,53 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" ></p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @pessoa.nome %>
-</p>
+<div align="Center">
+  <p>
+    <strong>Nome:</strong>
+    <%= @pessoa.nome %>
+  </p>
 
-<p>
-  <strong>Sobrenome:</strong>
-  <%= @pessoa.sobrenome %>
-</p>
+  <p>
+    <strong>Sobrenome:</strong>
+    <%= @pessoa.sobrenome %>
+  </p>
 
-<p>
-  <strong>Data nascimento:</strong>
-  <%= @pessoa.data_nascimento %>
-</p>
+  <p>
+    <strong>Data nascimento:</strong>
+    <%= @pessoa.data_nascimento %>
+  </p>
 
-<p>
-  <strong>Cpf:</strong>
-  <%= @pessoa.cpf %>
-</p>
+  <p>
+    <strong>Cpf:</strong>
+    <%= @pessoa.cpf %>
+  </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @pessoa.email %>
-</p>
+  <p>
+    <strong>Email:</strong>
+    <%= @pessoa.email %>
+  </p>
 
-<p>
-  <strong>Telefone:</strong>
-  <%= @pessoa.telefone %>
-</p>
+  <p>
+    <strong>Telefone:</strong>
+    <%= @pessoa.telefone %>
+  </p>
 
-<p>
-  <strong>Celular:</strong>
-  <%= @pessoa.celular %>
-</p>
+  <p>
+    <strong>Celular:</strong>
+    <%= @pessoa.celular %>
+  </p>
 
-<p>
-  <strong>Avatar:</strong>
-  <%= image_tag @pessoa.avatar.url(:original) %>
-</p>
+  <p>
+    <strong>Avatar:</strong>
+    <%= image_tag @pessoa.avatar.url(:original) %>
+  </p>
 
-<%= link_to 'Edit', edit_pessoa_path(@pessoa) %> |
-<%= link_to 'Back', pessoas_path %>
+  <%= link_to 'Voltar', pessoas_path, {
+    :style=>'color:#FFFFFF;',
+    :class => "btn btn-danger"
+  } %> |
+
+  <%= link_to 'Editar', edit_pessoa_path(@pessoa), {
+        :style=>'color:#FFFFFF;',
+        :class => "btn btn-primary"
+  } %>
+</div>

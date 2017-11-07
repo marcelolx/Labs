@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"></p>
 
 <h1>Pessoas</h1>
 
-<table>
-  <thead>
+<%= link_to 'Cadastrar Pessoa', new_pessoa_path,
+    {
+      :style=>'color:#FFFFFF;',
+      :class => "btn btn-primary pull-right"
+    }
+%>
+<br></br>
+<table class="table table-bordered">
+  <thead class="thead-dark">
     <tr>
       <th>Nome</th>
       <th>Sobrenome</th>
-      <th>Data nascimento</th>
+      <th>Nascimento</th>
       <th>Cpf</th>
       <th>Email</th>
       <th>Telefone</th>
       <th>Celular</th>
       <th>Avatar</th>
-      <th colspan="3"></th>
+      <th colspan="3">Ações</th>
     </tr>
   </thead>
 
@@ -27,15 +34,13 @@
         <td><%= pessoa.email %></td>
         <td><%= pessoa.telefone %></td>
         <td><%= pessoa.celular %></td>
-        <td><%= image_tag pessoa.avatar.url(:medium) %></td>
-        <td><%= link_to 'Show', pessoa %></td>
-        <td><%= link_to 'Edit', edit_pessoa_path(pessoa) %></td>
-        <td><%= link_to 'Destroy', pessoa, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= image_tag pessoa.avatar.url(:thumb) %></td>
+        <td><%= link_to 'Exibir', pessoa, :style=>'color:#FFFFFF;', :class => "btn btn-info" %></td>
+        <td><%= link_to 'Editar', edit_pessoa_path(pessoa), :style=>'color:#FFFFFF;', :class => "btn btn-success" %></td>
+        <td><%= link_to 'Excluir', pessoa, method: :delete, data: { confirm: 'Você tem certeza?' }, :style=>'color:#FFFFFF;', :class => "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Pessoa', new_pessoa_path %>

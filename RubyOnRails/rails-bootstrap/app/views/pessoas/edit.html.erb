@@ -1,6 +1,8 @@
-<h1>Editing Pessoa</h1>
+<h1>Editando Pessoa</h1>
 
 <%= render 'form', pessoa: @pessoa %>
 
-<%= link_to 'Show', @pessoa %> |
-<%= link_to 'Back', pessoas_path %>
+<div align="Center">
+  <%= link_to 'Voltar', pessoas_path, :style=>'color:#FFFFFF;', :class => "btn btn-danger" %> |
+<%= link_to 'Exibir', @pessoa, :style=>'color:#FFFFFF;', :class => "btn btn-info" %>
+</div>

@@ -11,47 +11,78 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome, id: :pessoa_nome %>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="field" align="left">
+        <%= form.label :nome %>
+        <%= form.text_field :nome, id: :pessoa_nome, :class => "form-control", :placeholder => 'Nome' %>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <div class="field" align="left">
+        <%= form.label :sobrenome %>
+        <%= form.text_field :sobrenome, id: :pessoa_sobrenome, :class => "form-control", :placeholder => 'Sobrenome' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :sobrenome %>
-    <%= form.text_field :sobrenome, id: :pessoa_sobrenome %>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="field" align="left" data-provide="datepicker">
+        <%= form.label :data_nascimento %>
+        <%= form.date_select :data_nascimento, id: :pessoa_data_nascimento, :html => { :class => 'custom-select' } %>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <div class="field" align="left">
+        <%= form.label :cpf %>
+        <%= form.text_field :cpf, id: :pessoa_cpf, :class => "form-control", :placeholder => 'CPF' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :data_nascimento %>
-    <%= form.date_select :data_nascimento, id: :pessoa_data_nascimento %>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="field" align="left">
+        <%= form.label :email %>
+        <%= form.text_field :email, id: :pessoa_email, :class => "form-control", :placeholder => 'E-Mail' %>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="field" align="left">
+        <%= form.label :telefone %>
+        <%= form.text_field :telefone, id: :pessoa_telefone, :class => "form-control", :placeholder => '(00) 00000-0000' %>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="field" align="left">
+        <%= form.label :celular %>
+        <%= form.text_field :celular, id: :pessoa_celular, :class => "form-control", :placeholder => '(00) 00000-0000' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :cpf %>
-    <%= form.text_field :cpf, id: :pessoa_cpf %>
-  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="field">
+        <%= form.label "Selecionar um Avatar" %>
+        <%= form.file_field :avatar, id: :pessoa_avatar %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :pessoa_email %>
-  </div>
 
-  <div class="field">
-    <%= form.label :telefone %>
-    <%= form.text_field :telefone, id: :pessoa_telefone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :celular %>
-    <%= form.text_field :celular, id: :pessoa_celular %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Avatar" %>
-    <%= form.file_field :avatar, id: :pessoa_avatar %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="col-md-6 mb-3">
+      <div class="actions">
+        <%= form.submit "Salvar", {
+            :style=>'color:#FFFFFF;',
+            :class => "btn btn-primary pull-right"
+          }
+        %>
+      </div>
+    </div>
   </div>
 <% end %>

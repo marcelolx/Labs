@@ -1,5 +1,8 @@
-<h1>New Pessoa</h1>
+<h1>Cadastrar Pessoa</h1>
 
 <%= render 'form', pessoa: @pessoa %>
 
-<%= link_to 'Back', pessoas_path %>
+<%= link_to 'Voltar', pessoas_path, {
+  :style=>'color:#FFFFFF;',
+  :class => "btn btn-danger pull-left"
+} %>
