@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.unoesc.carcilosystem.db.connection.ConnectionFactory;
@@ -24,7 +25,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		
 		try {
 			if ((conexao == null) || (conexao.isClosed())) {
-				conexao = new ConnectionFactory().getConnection();
+				conexao = new ConnectionFactory().UseMainConnection();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -45,12 +46,17 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			return "SELECT Codigo FROM usuario WHERE Login = ? AND Senha = ?"; 
 		}
 		
+		public static String GetSelectAll(){
+			return "SELECT Codigo, Login, Senha, Nome, DataNascimento, Rg, Cpf, NumeroRegCNH, CategoriaHabilitacao "
+					+ "FROM Usuario";
+		}
+		
 	}
 	
 	
 	
 	@Override
-	public boolean Inserir(Usuario AUsuario) {
+	public boolean salvar(Usuario AUsuario) {
 		
 		boolean inseriu = false;
 		try {
@@ -70,7 +76,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			stmt.execute();
 			
 			stmt.close();
-			conexao.close();
 			
 			inseriu = true;
 			
@@ -83,33 +88,61 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 
 	@Override
-	public boolean Atualizar(Usuario AUsuario) {
+	public boolean excluir(Integer ACodigo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean Excluir(Integer ACodigo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Usuario Localizar(Integer ACodigo) {
+	public Usuario localizar(Integer ACodigo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Usuario> LocalizarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Usuario> localizarTodos() {
+		List<Usuario> ListaUsuarios = new ArrayList<Usuario>();
+		
+		GetConexao();
+		
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(SQL.GetSelectAll());
+			
+			ResultSet usuarios = stmt.executeQuery();
+			
+			while(usuarios.next()){
+				Usuario usuario = new Usuario();
+				
+				usuario.setCodigo(usuarios.getInt("Codigo"));
+				usuario.setLogin(usuarios.getString("Login"));
+				usuario.setSenha(usuarios.getString("Senha"));
+				usuario.setNome(usuarios.getString("Nome"));
+				usuario.setDataNascimento(usuarios.getDate("DataNascimento"));
+				usuario.setRg(usuarios.getString("Rg"));
+				usuario.setCpf(usuarios.getString("Cpf"));
+				usuario.setNumeroRegCNH(usuarios.getLong("NumeroRegCNH"));
+				usuario.setCategoriaHabilitacao(usuarios.getString("CategoriaHabilitacao"));
+				
+				ListaUsuarios.add(usuario);				
+			}
+			
+			usuarios.close();
+			stmt.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return ListaUsuarios;
 	}
 
 
 
 	@Override
-	public boolean VerificaLogin(String AUsuario, String ASenha) {
+	public boolean verificaLogin(String AUsuario, String ASenha) {
 		
 		boolean loginValido = false;
 		try {
@@ -123,11 +156,10 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			
 			ResultSet login = stmt.executeQuery();
 			
-			loginValido = !login.wasNull();;
+			loginValido = login.next();
 			
 			login.close();
 			stmt.close();
-			conexao.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -147,9 +147,9 @@ public class FrmCadastro extends JFrame {
 			txtCPF.setBounds(53, 155, 116, 21);
 			contentPane.add(txtCPF);
 						
-			JLabel lblNSerieCnh = new JLabel("NÂº Serie CNH:");
+			JLabel lblNSerieCnh = new JLabel("Nº Serie CNH:");
 			lblNSerieCnh.setFont(new Font("SansSerif", Font.PLAIN, 14));
-			lblNSerieCnh.setBounds(237, 138, 90, 14);
+			lblNSerieCnh.setBounds(237, 138, 100, 14);
 			contentPane.add(lblNSerieCnh);
 			
 			MaskFormatter cnh = new MaskFormatter("###########");
@@ -158,7 +158,7 @@ public class FrmCadastro extends JFrame {
 			txtNSerieCNH.setBounds(237, 155, 116, 21);
 			contentPane.add(txtNSerieCNH);
 			
-			JLabel lblCategoriaHabilitao = new JLabel("Categoria HabilitaÃ§Ã£o:");
+			JLabel lblCategoriaHabilitao = new JLabel("Categoria Habilitação:");
 			lblCategoriaHabilitao.setFont(new Font("SansSerif", Font.PLAIN, 14));
 			lblCategoriaHabilitao.setBounds(53, 187, 160, 20);
 			contentPane.add(lblCategoriaHabilitao);
@@ -198,7 +198,7 @@ public class FrmCadastro extends JFrame {
 						JOptionPane.showMessageDialog(null, "Insira a sua data de nascimento!");
 						txtDataNascimento.requestFocus();
 					}else if (txtNomeUsuario.getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null, "Insira um nome de usuÃ¡rio!");
+						JOptionPane.showMessageDialog(null, "Insira um nome de usuario!");
 						txtNomeUsuario.requestFocus();
 					}else if (senha.length() == 0) {
 						JOptionPane.showMessageDialog(null, "Insira uma senha!");
@@ -231,11 +231,11 @@ public class FrmCadastro extends JFrame {
 						UsuarioDAOImpl CadastraUsuario = new UsuarioDAOImpl();
 						
 						
-						if (CadastraUsuario.Inserir(user)) {
-							JOptionPane.showMessageDialog(null, "Usuï¿½rio cadastrado com sucesso!");
+						if (CadastraUsuario.salvar(user)) {
+							JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso!");
 							btnLimpar.doClick();
 						} else {
-							JOptionPane.showMessageDialog(null, "Falha ao Cadastrar o usuï¿½rio!");
+							JOptionPane.showMessageDialog(null, "Falha ao Cadastrar o usuario!");
 						}								
 					}
 				}

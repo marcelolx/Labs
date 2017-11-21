@@ -6,15 +6,13 @@ import br.edu.unoesc.carcilosystem.db.model.Usuario;
 
 public interface UsuarioDAO {
 	
-	public boolean Inserir(Usuario AUsuario);
+	public boolean salvar(Usuario AUsuario);
 	
-	public boolean Atualizar(Usuario AUsuario);
+	public boolean excluir(Integer ACodigo);
 	
-	public boolean Excluir(Integer ACodigo);
+	public Usuario localizar(Integer ACodigo);
 	
-	public Usuario Localizar(Integer ACodigo);
+	public List<Usuario> localizarTodos();
 	
-	public List<Usuario> LocalizarTodos();
-	
-	public boolean VerificaLogin(String AUsuario, String ASenha); 
+	public boolean verificaLogin(String AUsuario, String ASenha); 
 }

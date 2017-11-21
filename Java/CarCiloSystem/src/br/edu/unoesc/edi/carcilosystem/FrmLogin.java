@@ -45,7 +45,7 @@ public class FrmLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblUsurio = new JLabel("Usuário");
+		JLabel lblUsurio = new JLabel("Usu�rio");
 		lblUsurio.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		lblUsurio.setBounds(180, 254, 84, 21);
 		contentPane.add(lblUsurio);
@@ -74,7 +74,7 @@ public class FrmLogin extends JFrame {
 			
 				UsuarioDAOImpl UsuarioLogin = new UsuarioDAOImpl();
 				
-				if (UsuarioLogin.VerificaLogin(usuario, senha)) {
+				if (UsuarioLogin.verificaLogin(usuario, senha)) {
 					FrmMain main = new FrmMain(1);
 					main.frame.setTitle("CarCiloSystem | Usuário: " + usuario + " |");
 					main.frame.setLocationRelativeTo(null);

@@ -6,13 +6,11 @@ import br.edu.unoesc.carcilosystem.db.model.Veiculo;
 
 public interface VeiculoDAO {
 	
-	public boolean Inserir(Veiculo AVeiculo);
+	public boolean salvar(Veiculo AVeiculo);
 	
-	public boolean Atualizar(Veiculo AVeiculo);
+	public boolean excluir(Integer ACodigo);
 	
-	public boolean Excluir(Integer ACodigo);
+	public Veiculo localizar(Integer ACodigo);
 	
-	public Veiculo Localizar(Integer ACodigo);
-	
-	public List<Veiculo> LocalizarTodos();
+	public List<Veiculo> localizarTodos();
 }

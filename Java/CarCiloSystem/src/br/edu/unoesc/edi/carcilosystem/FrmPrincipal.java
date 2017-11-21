@@ -16,6 +16,11 @@ import javax.swing.border.TitledBorder;
 public class FrmPrincipal extends JInternalFrame {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2537636671992172863L;
+
+	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -79,7 +84,7 @@ public class FrmPrincipal extends JInternalFrame {
 		});
 		mnCadastro.add(mntmMotorista);
 		
-		JMenuItem mntmVeculo = new JMenuItem("VeÃ­culo");
+		JMenuItem mntmVeculo = new JMenuItem("Veículo");
 		mntmVeculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FrmCadastrarVeiculo cadVeiculo = new FrmCadastrarVeiculo();
@@ -90,6 +95,30 @@ public class FrmPrincipal extends JInternalFrame {
 			}
 		});
 		mnCadastro.add(mntmVeculo);
+		
+		JMenuItem mntmItinerrio = new JMenuItem("Itiner\u00E1rio");
+		mntmItinerrio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FrmItinerario Itinerario = new FrmItinerario();
+				Itinerario.setLocationRelativeTo(null);
+				Itinerario.setVisible(true);
+				dispose();
+				setVisible(true);
+			}
+		});
+		mnCadastro.add(mntmItinerrio);
+		
+		JMenuItem mntmSilo = new JMenuItem("Silo");
+		mntmSilo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FrmCadastroSilo cadSilo = new FrmCadastroSilo();
+				cadSilo.setLocationRelativeTo(null);
+				cadSilo.setVisible(true);
+				dispose();
+				setVisible(true);
+			}
+		});
+		mnCadastro.add(mntmSilo);
 
 	}
 }

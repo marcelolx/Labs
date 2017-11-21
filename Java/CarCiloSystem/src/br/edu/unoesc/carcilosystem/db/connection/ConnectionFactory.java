@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 
 public class ConnectionFactory {
 	
+	private static Connection conexao;
+	
 	public Connection getConnection() {
         try {
         	String urlConexao = "jdbc:mysql://localhost:3306/carcilo";
@@ -21,4 +23,17 @@ public class ConnectionFactory {
             throw new RuntimeException(e);
         }
     }
+	
+	public Connection UseMainConnection(){
+		try {
+			if ((conexao == null) || (conexao.isClosed())) {
+				conexao = getConnection();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return conexao;
+	}
 }

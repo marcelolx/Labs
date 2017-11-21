@@ -34,29 +34,13 @@ public class FrmCadastrarVeiculo extends JFrame {
 	private JFormattedTextField txtAno;
 	private JComboBox<?> cbTipoVeiculo;
 	private JFormattedTextField txtPlaca;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrmCadastrarVeiculo frame = new FrmCadastrarVeiculo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	/**
 	 * Create the frame.
 	 */
 	public FrmCadastrarVeiculo() {
 		setTitle("Cadastro de Veículo");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 302, 297);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -168,7 +152,7 @@ public class FrmCadastrarVeiculo extends JFrame {
 					
 					VeiculoDAOImpl cadastrarVeiculo = new VeiculoDAOImpl();
 					
-					if (cadastrarVeiculo.Inserir(veiculo)) {
+					if (cadastrarVeiculo.salvar(veiculo)) {
 						JOptionPane.showMessageDialog(null, "Veiculo cadastrado com sucesso!");
 						LimparCampos();
 					} else {
