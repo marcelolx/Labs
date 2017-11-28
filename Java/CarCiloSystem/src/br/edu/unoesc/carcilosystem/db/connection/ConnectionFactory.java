@@ -10,6 +10,11 @@ public class ConnectionFactory {
 	
 	private static Connection conexao;
 	
+	/**
+	 * Cria uma nova conexão com a base de dados.
+	 * 
+	 * @return Retorna Connection
+	 */
 	public Connection getConnection() {
         try {
         	String urlConexao = "jdbc:mysql://localhost:3306/carcilo";
@@ -24,6 +29,11 @@ public class ConnectionFactory {
         }
     }
 	
+	/**
+	 * Retorna uma instância da conexão principal para ser usada.
+	 * 
+	 * @return Connection
+	 */
 	public Connection UseMainConnection(){
 		try {
 			if ((conexao == null) || (conexao.isClosed())) {

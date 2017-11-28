@@ -1,10 +1,10 @@
 package br.edu.unoesc.carcilosystem.db.model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ItinerarioSilos {
 	private Integer Codigo;
+	private Integer Empresa;
 	private Integer CodigoSilo;
 	private Integer CodigoItinerario;
 	private String TipoSilo;
@@ -19,6 +19,12 @@ public class ItinerarioSilos {
 	}
 	public void setCodigo(Integer codigo) {
 		Codigo = codigo;
+	}
+	public Integer getEmpresa() {
+		return Empresa;
+	}
+	public void setEmpresa(Integer empresa) {
+		Empresa = empresa;
 	}
 	public Integer getCodigoSilo() {
 		return CodigoSilo;

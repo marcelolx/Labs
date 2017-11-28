@@ -79,10 +79,14 @@ public class FrmItinerario extends JFrame {
 	private Silo SiloOrigemSelecionado = null;
 	private Silo SiloDestinoSelecionado = null;
 	
+	
+	
 	/**
 	 * Create the frame.
 	 */
 	public FrmItinerario() {
+		ItinerarioRgnImpl itinerarioRgn = new ItinerarioRgnImpl();
+		
 		setFont(new Font("SansSerif", Font.PLAIN, 14));
 		setTitle("Itiner\u00E1rio");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -656,21 +660,44 @@ public class FrmItinerario extends JFrame {
 					JOptionPane.showMessageDialog(btnCalcularTempo, "Selecione os silos e calcule o tempo e distância!");
 				} else {
 					List<ItinerarioSilos> listaItinerarioSilos = new ArrayList<ItinerarioSilos>();					
-					Itinerario itinerario = new Itinerario();
-					ItinerarioRgnImpl itinerarioRgn = new ItinerarioRgnImpl();
+					Itinerario itinerario = new Itinerario();					
 					
 					Timestamp DataHoraSaida = null;
 					Timestamp DataHoraChegada = null;
+					
+					String Origem = GoogleDirectionsFactory.PreparaURL(
+							SiloOrigemSelecionado.getNome(), 
+							SiloOrigemSelecionado.getRua(), 
+							SiloOrigemSelecionado.getBairro(), 
+							SiloOrigemSelecionado.getCidade(), 
+							SiloOrigemSelecionado.getSiglaUF());
+					Origem = Origem + ",+Brasil";
+					
+					String Destino = GoogleDirectionsFactory.PreparaURL(
+							SiloDestinoSelecionado.getNome(), 
+							SiloDestinoSelecionado.getRua(), 
+							SiloDestinoSelecionado.getBairro(), 
+							SiloDestinoSelecionado.getCidade(), 
+							SiloDestinoSelecionado.getSiglaUF());
+					
+					String URLMaps = GoogleDirectionsFactory.GenerateURLMapsDir(
+							Origem, 
+							Destino, 
+							SiloOrigemSelecionado.getLatitude(), 
+							SiloOrigemSelecionado.getLongitude(),
+							SiloDestinoSelecionado.getLatitude(),
+							SiloDestinoSelecionado.getLongitude());					
+					
 					
 					Integer CodigoMotorista = getCodigoMotorista();
 					Integer CodigoVeiculo = getCodigoVeiculo();
 					
 					String data = txtDataSaida.getText() + " " + txtHoraSaida.getText();						
 					
-					DataHoraSaida = getTimestamp(data);
+					DataHoraSaida = itinerarioRgn.getTimestamp(data);
 					data = txtDataChegada.getText() + " " + txtHoraChegada.getText();
 					
-					DataHoraChegada = getTimestamp(data);
+					DataHoraChegada = itinerarioRgn.getTimestamp(data);
 				
 					//Itinerário
 					itinerario.setCodigo(0);
@@ -682,6 +709,7 @@ public class FrmItinerario extends JFrame {
 					itinerario.setDistanciaCalculada(txtKmpercurso.getText());
 					itinerario.setTempoPercursoCalculado(txtTempoestimado.getText());
 					itinerario.setSituacao("Aguardando saída.");
+					itinerario.setURLRotaMaps(URLMaps);
 					
 					//Silos Itinerario
 					for (int i = 0; i < 2; i++) {
@@ -758,28 +786,12 @@ public class FrmItinerario extends JFrame {
 		SiloOrigemSelecionado = null;
 		SiloDestinoSelecionado = null;
 	}
-	
-	private Timestamp getTimestamp(String ADateTime) {
 		
-		String[] dataHora = ADateTime.split(" ");
-		String[] data = dataHora[0].trim().split("/");
-		String[] horas = dataHora[1].trim().split(":");
-		
-		
-		String dia = data[0];
-		String mes = data[1];
-		String ano = data[2];
-		String hora = horas[0];
-		String minuto = horas[1];
-		String segundo = horas[2];
-		
-		String preparedDate = ano + "-" + mes + "-" + dia + " " + hora + ":" + minuto + ":" + segundo;	
-		
-		Timestamp formatedDate = Timestamp.valueOf(preparedDate);
-	
-		return formatedDate;
-	}
-	
+	/**
+	 * Pega o código do motorista do combobox dos motoristas.
+	 * 
+	 * @return
+	 */
 	private Integer getCodigoMotorista(){
 		String MotoristaSelecionado = cbMotoristas.getSelectedItem().toString();
 		String[] CodigoMotorista = MotoristaSelecionado.split("-");
@@ -787,6 +799,11 @@ public class FrmItinerario extends JFrame {
 		return Integer.parseInt(CodigoMotorista[0].trim());
 	}
 	
+	/**
+	 * Pega o código do veículo do combobox dos veículos.
+	 * 
+	 * @return
+	 */
 	private Integer getCodigoVeiculo(){
 		String VeiculoSelecionado = cbVeiculo.getSelectedItem().toString();
 		String[] CodigoVeiculo = VeiculoSelecionado.split("-");
@@ -794,6 +811,10 @@ public class FrmItinerario extends JFrame {
 		return Integer.parseInt(CodigoVeiculo[0].trim());
 	}
 	
+	/**
+	 * Popula combobox dos motoristas buscando eles no banco.
+	 * 
+	 */
 	private void PopularComboMotoristas(){
 		List<Usuario> ListaMotoristas;
 		
@@ -812,7 +833,10 @@ public class FrmItinerario extends JFrame {
 		}
 	}
 	
-	
+	/**
+	 * Popula o combobox dos veículos procurando os no banco.
+	 * 
+	 */
 	private void PopularComboVeiculos(){
 				
 		VeiculoDAOImpl VeiculoDAO = new VeiculoDAOImpl();
@@ -831,6 +855,10 @@ public class FrmItinerario extends JFrame {
 
 	}
 	
+	/**
+	 * Popula os combobox de silo origem e destino buscando os mesmos no banco.
+	 * 
+	 */
 	private void PopularComboSiloOrigemEDestino(){
 		
 		SiloDAOImpl SiloDAO = new SiloDAOImpl();

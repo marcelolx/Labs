@@ -1,9 +1,6 @@
 package br.edu.unoesc.edi.carcilosystem;
 
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,8 +13,6 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 
@@ -45,23 +40,23 @@ public class FrmLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblUsurio = new JLabel("Usuário");
+		JLabel lblUsurio = new JLabel("Usu\u00E1rio:");
 		lblUsurio.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		lblUsurio.setBounds(180, 254, 84, 21);
+		lblUsurio.setBounds(22, 256, 84, 21);
 		contentPane.add(lblUsurio);
 		
 		edtUsuario = new JTextField();
-		edtUsuario.setBounds(21, 255, 148, 20);
+		edtUsuario.setBounds(86, 256, 148, 20);
 		contentPane.add(edtUsuario);
 		edtUsuario.setColumns(10);
 		
-		JLabel lblSenha = new JLabel("Senha");
+		JLabel lblSenha = new JLabel("Senha:");
 		lblSenha.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		lblSenha.setBounds(180, 286, 84, 21);
+		lblSenha.setBounds(22, 288, 84, 21);
 		contentPane.add(lblSenha);
 		
 		edtSenha = new JPasswordField();
-		edtSenha.setBounds(21, 287, 148, 20);
+		edtSenha.setBounds(86, 288, 148, 20);
 		contentPane.add(edtSenha);
 		
 		JButton btnLogar = new JButton("Logar");
@@ -85,7 +80,7 @@ public class FrmLogin extends JFrame {
 				}	
 			}
 		});
-		btnLogar.setBounds(21, 316, 148, 23);
+		btnLogar.setBounds(141, 316, 93, 23);
 		contentPane.add(btnLogar);
 		
 		JButton btnCadastrarse = new JButton("Cadastrar-se");
@@ -98,7 +93,7 @@ public class FrmLogin extends JFrame {
 				dispose();
 			}
 		});
-		btnCadastrarse.setBounds(180, 316, 148, 23);
+		btnCadastrarse.setBounds(22, 316, 110, 23);
 		contentPane.add(btnCadastrarse);
 		
 		JPanel panel = new JPanel();

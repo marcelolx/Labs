@@ -1,6 +1,5 @@
 package br.edu.unoesc.carcilosystem.db.model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -14,6 +13,7 @@ public class Itinerario {
 	private String Situacao;
 	private String DistanciaCalculada;
 	private String TempoPercursoCalculado;
+	private String URLRotaMaps;
 	private List<ItinerarioSilos> ListaItinerarioSilos;
 	
 	public Integer getCodigo() {
@@ -69,6 +69,12 @@ public class Itinerario {
 	}
 	public void setTempoPercursoCalculado(String tempoPercursoCalculado) {
 		TempoPercursoCalculado = tempoPercursoCalculado;
+	}
+	public String getURLRotaMaps() {
+		return URLRotaMaps;
+	}
+	public void setURLRotaMaps(String uRLRotaMaps) {
+		URLRotaMaps = uRLRotaMaps;
 	}
 	public List<ItinerarioSilos> getListaItinerarioSilos() {
 		return ListaItinerarioSilos;

@@ -2,6 +2,7 @@ package br.edu.unoesc.carcilosystem.db.model;
 
 public class Silo {
 	private Integer Codigo;
+	private Integer Empresa;
 	private String Cidade;
 	private String Rua;
 	private String Bairro;
@@ -11,6 +12,7 @@ public class Silo {
 	private String Latitude;
 	private String Longitude;
 	private String Nome;
+	private Boolean Vinculado = false;
 	
 	
 	public Integer getCodigo() {
@@ -18,6 +20,12 @@ public class Silo {
 	}
 	public void setCodigo(Integer codigo) {
 		Codigo = codigo;
+	}
+	public Integer getEmpresa() {
+		return Empresa;
+	}
+	public void setEmpresa(Integer empresa) {
+		Empresa = empresa;
 	}
 	public String getCidade() {
 		return Cidade;
@@ -72,6 +80,12 @@ public class Silo {
 	}
 	public void setNome(String nome) {
 		Nome = nome;
+	}
+	public Boolean getVinculado() {
+		return Vinculado;
+	}
+	public void setVinculado(Boolean vinculado) {
+		Vinculado = vinculado;
 	}
 	
 }

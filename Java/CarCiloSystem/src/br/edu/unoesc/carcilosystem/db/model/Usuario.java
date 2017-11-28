@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Usuario {
 	private Integer Codigo;
+	private Integer Empresa;
 	private String Login;
 	private String Senha;
 	private String Nome;
@@ -18,6 +19,12 @@ public class Usuario {
 	}
 	public void setCodigo(Integer codigo) {
 		Codigo = codigo;
+	}
+	public Integer getEmpresa() {
+		return Empresa;
+	}
+	public void setEmpresa(Integer empresa) {
+		Empresa = empresa;
 	}
 	public String getLogin() {
 		return Login;

@@ -81,6 +81,7 @@ public class FrmCadastroSilo extends JFrame {
 					
 					silo = new Silo();
 					
+					silo.setEmpresa(0);
 					silo.setCidade(txtCidade.getText());
 					silo.setEstado(txtEstado.getText());
 					silo.setRua(txtRua.getText());
@@ -246,7 +247,9 @@ public class FrmCadastroSilo extends JFrame {
 		panel.add(btnMaps);
 	}
 
-	
+	/**
+	 * Limpa todos os campos da tela.
+	 */
 	private void LimparCampos(){
 		txtCidade.setText("");
 		txtEstado.setText("");
@@ -259,7 +262,11 @@ public class FrmCadastroSilo extends JFrame {
 		txtSiglaUF.setText("");
 	}
 	
-	
+	/**
+	 * Método estático para setar a latitude e longitude passada pelo FrmMaps.
+	 * 
+	 * @param ALatitudeLongitude
+	 */
 	public static void SetLatitudeLongitude(String[] ALatitudeLongitude){
 
 		LatitudeLongitude = ALatitudeLongitude;

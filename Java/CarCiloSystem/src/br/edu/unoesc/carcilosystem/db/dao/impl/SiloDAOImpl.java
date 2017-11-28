@@ -25,20 +25,22 @@ public class SiloDAOImpl implements SiloDAO{
 	public boolean inserir(Silo ASilo) {
 
 		boolean inseriu = false;
+		int paramIndex = 1;
 		try {
 			GetConexao();
 		  	
 			PreparedStatement stmt = conexao.prepareStatement(SQL.GetInsert());
 			
-			stmt.setString(1, ASilo.getCidade());
-			stmt.setString(2, ASilo.getRua());
-			stmt.setString(3, ASilo.getBairro());
-			stmt.setString(4, ASilo.getNumero());
-			stmt.setString(5, ASilo.getEstado());
-			stmt.setString(6, ASilo.getSiglaUF());
-			stmt.setString(7, ASilo.getLatitude());
-			stmt.setString(8, ASilo.getLongitude());
-			stmt.setString(9, ASilo.getNome());
+			stmt.setInt(paramIndex++, ASilo.getEmpresa());
+			stmt.setString(paramIndex++, ASilo.getCidade());
+			stmt.setString(paramIndex++, ASilo.getRua());
+			stmt.setString(paramIndex++, ASilo.getBairro());
+			stmt.setString(paramIndex++, ASilo.getNumero());
+			stmt.setString(paramIndex++, ASilo.getEstado());
+			stmt.setString(paramIndex++, ASilo.getSiglaUF());
+			stmt.setString(paramIndex++, ASilo.getLatitude());
+			stmt.setString(paramIndex++, ASilo.getLongitude());
+			stmt.setString(paramIndex++, ASilo.getNome());
 			
 			stmt.execute();
 			
@@ -112,6 +114,7 @@ public class SiloDAOImpl implements SiloDAO{
 				Silo silo = new Silo();
 				
 				silo.setCodigo(silos.getInt("Codigo"));
+				silo.setEmpresa(silos.getInt("Empresa"));
 				silo.setCidade(silos.getString("Cidade"));
 				silo.setRua(silos.getString("Rua"));
 				silo.setBairro(silos.getString("Bairro"));
@@ -136,7 +139,52 @@ public class SiloDAOImpl implements SiloDAO{
 		return ListaSilos;
 	}
 
-
+	
+	@Override
+	public List<Silo> localizarTodosEmpresa(Integer AEmpresa) {
+        List<Silo> ListaSilos = new ArrayList<Silo>();
+		
+		GetConexao();
+		
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(SQL.GetSelectAllEmpresa());
+			
+			stmt.setInt(1, AEmpresa);
+			
+			ResultSet silos = stmt.executeQuery();		
+			
+			while(silos.next()){
+				Silo silo = new Silo();
+				
+				silo.setCodigo(silos.getInt("Codigo"));
+				silo.setEmpresa(silos.getInt("Empresa"));
+				silo.setCidade(silos.getString("Cidade"));
+				silo.setRua(silos.getString("Rua"));
+				silo.setBairro(silos.getString("Bairro"));
+				silo.setNumero(silos.getString("Numero"));
+				silo.setEstado(silos.getString("Estado"));
+				silo.setSiglaUF(silos.getString("SiglaUF"));
+				silo.setLatitude(silos.getString("Latitude"));
+				silo.setLongitude(silos.getString("Longitude"));
+				silo.setNome(silos.getString("Nome"));
+				
+				ListaSilos.add(silo);
+			}
+			
+			silos.close();
+			stmt.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ListaSilos;
+	}
+	
+    /**
+     * Verifica se está conectado, senão busca a instância principal da conexão.
+     */
 	private static void GetConexao(){
 		try {
 			if ((conexao == null) || (conexao.isClosed())) {
@@ -148,15 +196,20 @@ public class SiloDAOImpl implements SiloDAO{
 		}
 	}
 	
+	/**
+	 * Classe responsável por agrupar as instruções SQL para inserir, atualizar, deletar e buscar dados dos silos.
+	 * 
+	 *@author Leandro
+	 */
 	private static class SQL {
 		
 		public static String GetInsert(){
-			return "INSERT INTO silos (Cidade, Rua, Bairro, Numero, Estado, SiglaUF, Latitude, Longitude, Nome)"
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			return "INSERT INTO silos (Empresa, Cidade, Rua, Bairro, Numero, Estado, SiglaUF, Latitude, Longitude, Nome)"
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		}
 		
 		public static String GetSelectAll(){
-			return "SELECT Codigo, Cidade, Rua, Bairro, Numero, Estado, SiglaUF, Latitude, Longitude, Nome "
+			return "SELECT Codigo, Empresa, Cidade, Rua, Bairro, Numero, Estado, SiglaUF, Latitude, Longitude, Nome "
 					+ "FROM silos";
 		}
 		
@@ -168,6 +221,10 @@ public class SiloDAOImpl implements SiloDAO{
 			return "DELETE FROM silos WHERE Codigo = ?";
 		}
 		
-	}
-	
+		public static String GetSelectAllEmpresa(){
+			return "SELECT Codigo, Empresa, Cidade, Rua, Bairro, Numero, Estado, SiglaUF, Latitude, Longitude, Nome "
+					+ "FROM silos WHERE Empresa = ?";
+		}
+		
+	}	
 }

@@ -34,32 +34,32 @@ public class FrmMaps {
 		frame.setLocationRelativeTo(null);
 		frame.add(view, BorderLayout.CENTER);
 		frame.setSize(1024, 728);
-		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		browser.loadURL(AURLPreparada);
 		
 		view.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				
-				int PosIni = view.getBrowser().getURL().indexOf("@") + 1;
-				
-				String[] url = view.getBrowser().getURL().substring(PosIni).replace("z", "").trim().split(",");
-				String latitude = url[0];
-				String longitude = url[1];
-				
-				int dialogResult = JOptionPane.showConfirmDialog(null, "Deseja utilizar esta geolocalização para o silo?", "Confirmar geolocalização!", JOptionPane.YES_NO_OPTION);				
-				if (dialogResult == JOptionPane.YES_OPTION){
-					LatitudeLongitude = new String[2];
+				if (AFormPai == "br.edu.unoesc.edi.carcilosystem.FrmCadastroSilo") {
 					
-					LatitudeLongitude[0] = latitude;
-					LatitudeLongitude[1] = longitude;
+					int PosIni = view.getBrowser().getURL().indexOf("@") + 1;
 					
-					if (AFormPai == "br.edu.unoesc.edi.carcilosystem.FrmCadastroSilo") {
+					String[] url = view.getBrowser().getURL().substring(PosIni).replace("z", "").trim().split(",");
+					String latitude = url[0];
+					String longitude = url[1];
+					
+					int dialogResult = JOptionPane.showConfirmDialog(null, "Deseja utilizar esta geolocalização para o silo?", "Confirmar geolocalização!", JOptionPane.YES_NO_OPTION);				
+					if (dialogResult == JOptionPane.YES_OPTION){
+						LatitudeLongitude = new String[2];
+						
+						LatitudeLongitude[0] = latitude;
+						LatitudeLongitude[1] = longitude;
+						
+					
 						FrmCadastroSilo.SetLatitudeLongitude(LatitudeLongitude);
-						frame.dispose();
+						frame.dispose();				
+					} else {
+						LatitudeLongitude = null;
 					}
-				} else {
-					LatitudeLongitude = null;
 				}
 			}
 		});
