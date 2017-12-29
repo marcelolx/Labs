@@ -3,3 +3,6 @@
 *.settings
 *.class
 Java/CarCiloSystem/doc/
+
+#JavaScript projects dependencies
+node_modules
