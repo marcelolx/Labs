@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Pubsub from 'pubsub-js';
 
 export default class Foto extends Component {
   render(){
@@ -110,15 +109,6 @@ class FotoInfoComentario extends Component{
   constructor(props){
     super(props);
     this.state = {comentarios:this.props.foto.comentarios};
-  }
-
-  componentWillMount(){
-    Pubsub.subscribe('novos-comentarios', (topico, infoComentario) => {
-      if (this.props.foto.id === infoComentario.fotoId){
-         const novosComentarios = this.state.comentarios.concat(infoComentario.novoComentario);
-         this.setState({comentarios:novosComentarios});
-      }
-    });
   }
 
   render(){
