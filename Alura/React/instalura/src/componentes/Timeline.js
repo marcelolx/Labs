@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import FotoItem from './Foto';
-import LogicaTimeline from '../logicas/LogicaTimeline'
 
 class Timeline extends Component {
 
@@ -8,12 +7,13 @@ class Timeline extends Component {
     super();
     this.state = {ListaFotos:[]};
     this.login = props.login;
-    this.logicaTimeline = new LogicaTimeline([]);
+    //É instanciada no TimelineBox, deixando ela global, pra outros acessarem
+    //this.store = new store([]);
   }
 
   componentWillMount(){
-    this.logicaTimeline.subscribe(AListaFotos => {
-      this.setState({ListaFotos:AListaFotos});
+    this.props.store.subscribe(() => {
+      this.setState({ListaFotos:this.props.store.getState()});
     });
   }
 
@@ -29,11 +29,11 @@ class Timeline extends Component {
   }
 
   like(fotoId) {
-    this.logicaTimeline.like(fotoId);
+    this.props.store.like(fotoId);
   }
 
   comenta(fotoId,textoComentario) {
-    this.logicaTimeline.comenta(fotoId, textoComentario);
+    this.props.store.comenta(fotoId, textoComentario);
   }
 
   carregaFotos(){
@@ -43,8 +43,8 @@ class Timeline extends Component {
      }else {
        urlPerfil = `http://localhost:8080/api/public/fotos/${this.login.props.match.params.login}`;
      }
-
-     this.logicaTimeline.lista(urlPerfil);
+  
+    this.props.store.dispatch({type:'LISTAGEM', fotos:[]});
   }
 
   render() {

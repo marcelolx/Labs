@@ -1,6 +1,6 @@
 import PubSub from 'pubsub-js';
 
-export default class LogicaTimeline {
+export default class store {
 
   constructor(ListaFotos){
     this.ListaFotos = ListaFotos;
