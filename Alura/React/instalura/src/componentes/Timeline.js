@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FotoItem from './Foto';
+import TimelineAPI from '../logicas/TimelineAPI';
 
 class Timeline extends Component {
 
@@ -43,8 +44,9 @@ class Timeline extends Component {
      }else {
        urlPerfil = `http://localhost:8080/api/public/fotos/${this.login.props.match.params.login}`;
      }
-  
-    this.props.store.dispatch({type:'LISTAGEM', fotos:[]});
+
+     TimelineAPI.lista(urlPerfil, this.props.store);
+     this.props.store.dispatch({type:'LISTAGEM', fotos:[]});
   }
 
   render() {
