@@ -30,11 +30,11 @@ class Timeline extends Component {
   }
 
   like(fotoId) {
-    this.props.store.like(fotoId);
+    this.props.store.dispatch(TimelineAPI.like(fotoId));
   }
 
   comenta(fotoId,textoComentario) {
-    this.props.store.comenta(fotoId, textoComentario);
+    this.props.store.dispatch(TimelineAPI.comenta(fotoId, textoComentario));
   }
 
   carregaFotos(){
@@ -45,8 +45,7 @@ class Timeline extends Component {
        urlPerfil = `http://localhost:8080/api/public/fotos/${this.login.props.match.params.login}`;
      }
 
-     TimelineAPI.lista(urlPerfil, this.props.store);
-     this.props.store.dispatch({type:'LISTAGEM', fotos:[]});
+     this.props.store.dispatch(TimelineAPI.lista(urlPerfil));
   }
 
   render() {

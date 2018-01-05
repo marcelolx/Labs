@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Timeline from './Timeline';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunkModdleware from 'redux-thunk';
 import {timeline} from '../reducers/timeline';
 
-const store = createStore(timeline);
+const store = createStore(timeline, applyMiddleware(thunkModdleware));
 
 
 class TimelineBox extends Component {
