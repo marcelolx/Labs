@@ -106,16 +106,16 @@ class FotoInfoLegenda extends Component{
 
 class FotoInfoComentario extends Component{
 
-  constructor(props){
+  /*constructor(props){
     super(props);
     this.state = {comentarios:this.props.foto.comentarios};
-  }
+  }*/
 
   render(){
     return(
       <ul className="foto-info-comentarios">
       {
-        this.state.comentarios.map(comentario => {
+        this.props.foto.comentarios.map(comentario => {
           return(
             <li className="comentario" key={comentario.id}>
               <Link to={`/timeline/${comentario.login}`} className="foto-info-autor">{comentario.login} </Link>

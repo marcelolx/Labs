@@ -1,23 +1,22 @@
 import React, {Component} from 'react';
-import PubSub from 'pubsub-js';
+import TimelineAPI from '../logicas/TimelineAPI';
 
 export default class Header extends Component {
 
+  constructor(){
+    super();
+    this.state = {msg: ''};
+  }
+
+  componentDidMount(){
+    this.props.store.subscribe(() => {
+      this.setState({msg:this.props.store.getState().notificao});
+    });
+  }
+
   pesquisa(event){
     event.preventDefault();
-
-    fetch(`http://localhost:8080/api/public/fotos/${this.loginPesquisado.value}`)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }else {
-          throw new Error("Não foi possível realizar o like da foto!");
-        }
-      })
-      .then(fotos => {
-        PubSub.publish('timeline', {fotos});
-        this.loginPesquisado.value = '';
-      });
+    this.props.store.dispatch(TimelineAPI.pesquisa(this.loginPesquisado.value));
   }
 
   render() {
@@ -36,6 +35,7 @@ export default class Header extends Component {
         <nav>
           <ul className="header-nav">
             <li className="header-nav-item">
+              <span>{this.state.msg}</span>
               <a href="">
 
               </a>

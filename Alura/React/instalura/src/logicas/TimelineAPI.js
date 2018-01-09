@@ -1,6 +1,30 @@
-import {listagem, comentario, like} from '../actions/actionCreator';
+import {listagem, comentario, like, notifica} from '../actions/actionCreator';
 
 export default class TimelineAPI {
+
+  static pesquisa(loginPesquisado) {
+    return dispatch => {
+      fetch(`http://localhost:8080/api/public/fotos/${loginPesquisado}`)
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }else {
+            throw new Error("Não foi possível realizar o like da foto!");
+          }
+        })
+        .then(fotos => {
+          if (fotos.length === 0) {
+            dispatch(notifica('Usuário não encontrado!'))
+          } else {
+            dispatch(notifica(''))
+          }
+
+          dispatch(listagem(fotos));
+          return fotos;
+        });
+    }
+  }
+
 
   static like(fotoId) {
     return dispatch => {
