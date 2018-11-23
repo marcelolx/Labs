@@ -2,6 +2,7 @@
 *.recommenders
 *.settings
 *.class
+*.jar
 Java/CarCiloSystem/doc/
 
 #JavaScript projects dependencies
