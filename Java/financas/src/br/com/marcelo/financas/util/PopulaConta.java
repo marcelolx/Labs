@@ -2,7 +2,7 @@ package br.com.marcelo.financas.util;
 
 import javax.persistence.EntityManager;
 
-import br.com.marcelo.financas.Conta;
+import br.com.marcelo.financas.modelo.Conta;
 
 public class PopulaConta {
 
